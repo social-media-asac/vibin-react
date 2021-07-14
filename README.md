@@ -35,5 +35,6 @@ Kindly check our users stories from [HERE](https://trello.com/b/ZUhWSKWo/vibe-in
 ### **Database Diagram**
 ![IMG](https://github.com/social-media-asac/vybin/blob/main/img/db.PNG)
 
-[softwarereq](https://github.com/social-media-asac/vybin/blob/main/markdown/agreement.md)
-[agreement](https://github.com/social-media-asac/vybin/blob/main/markdown/softwarereq.md)
+[Software-requirement](https://github.com/social-media-asac/vybin/blob/main/markdown/agreement.md)
+***
+[Agreement](https://github.com/social-media-asac/vybin/blob/main/markdown/softwarereq.md)
