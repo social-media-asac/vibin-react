@@ -23,8 +23,7 @@ Kindly check our users stories from [HERE](https://trello.com/b/ZUhWSKWo/vibe-in
 
 ![IMG](https://github.com/social-media-asac/vybin/blob/main/img/UmlPrject.PNG)
 
-### **Test**
-![IMG](https://github.com/social-media-asac/vybin/blob/main/img/test.PNG)
+
 ### **Wireframe**
 
 ![IMG](https://github.com/social-media-asac/vybin/blob/main/img/loginn.png)
