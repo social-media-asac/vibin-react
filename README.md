@@ -24,14 +24,14 @@ Kindly check our users stories from [HERE](https://trello.com/b/ZUhWSKWo/vibe-in
 ![IMG](https://github.com/social-media-asac/vybin/blob/main/img/UmlPrject.PNG)
 
 ### **Test**
-![IMG]()
+![IMG](https://github.com/social-media-asac/vybin/blob/main/img/test.PNG)
 ### **Wireframe**
 
-![IMG]()
-![IMG]()
-![IMG]()
-![IMG]()
+![IMG](https://github.com/social-media-asac/vybin/blob/main/img/loginn.png)
+![IMG](https://github.com/social-media-asac/vybin/blob/main/img/register.png)
+![IMG](https://github.com/social-media-asac/vybin/blob/main/img/vibe-in-homepage-wireframe-.png)
+![IMG](https://github.com/social-media-asac/vybin/blob/main/img/videochat-wireframe.png)
 
 
 ### **Database Diagram**
-![IMG](img/db.PNG)
+![IMG](https://github.com/social-media-asac/vybin/blob/main/img/db.PNG)
