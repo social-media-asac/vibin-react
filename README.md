@@ -17,6 +17,12 @@ Vibe-in is a Social media  CRUD web application built with MERN stack. It breaks
 
 Kindly check our users stories from [HERE](https://trello.com/b/ZUhWSKWo/vibe-in-userstory)
 
+
+[Software-requirement](https://github.com/social-media-asac/vybin/blob/main/markdown/agreement.md)
+
+
+[Agreement](https://github.com/social-media-asac/vybin/blob/main/markdown/softwarereq.md)
+
 ## Domain Modeling
 
 ### **UML**
@@ -35,6 +41,3 @@ Kindly check our users stories from [HERE](https://trello.com/b/ZUhWSKWo/vibe-in
 ### **Database Diagram**
 ![IMG](https://github.com/social-media-asac/vybin/blob/main/img/db.PNG)
 
-[Software-requirement](https://github.com/social-media-asac/vybin/blob/main/markdown/agreement.md)
-***
-[Agreement](https://github.com/social-media-asac/vybin/blob/main/markdown/softwarereq.md)
