@@ -1,15 +1,26 @@
 // import logo from './logo.svg';
 import './App.css';
-
+import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
+import Header from '../src/component/header/headar'
+import Footer from '../src/component/footer/footer'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-       <h1>vibin</h1>
+    <Router>
+    <>
+      <Switch>
+      <Header className="App-header"/>
+       
         
-      </header>
-    </div>
+          <Route exact path = "/"></Route>
+      </Switch>
+
+      <h1>VIBIN</h1>
+      <Footer/>
+   
+    </>
+    </Router>
+    
   );
 }
 
