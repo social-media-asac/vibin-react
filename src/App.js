@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import Main from '../src/component/main/main'
-import LoginProvider from './contex/authContex';
+import LoginProvider from './context/authContext';
 function App() {
   return (
 
