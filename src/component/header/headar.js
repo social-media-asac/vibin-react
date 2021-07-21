@@ -6,7 +6,7 @@ const Navbar = (props) =>{
           <nav>
           <Link to='/home'> <button>VibeIn</button></Link> 
             
-         <Link to='/profile/id'>  
+         <Link to='/user/:id'>  
               <button>My Profile</button> </Link>
       
           </nav>
