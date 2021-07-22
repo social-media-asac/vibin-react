@@ -19,7 +19,7 @@ export default function Profile() {
 }, [])
  // Fetch allRequest
  const fetchUserInfo = async (_id) => {
-  const res = await fetch(`https://tas-vybin.herokuapp.com/api/v1/auth/user/${_id}`,{
+  const res = await fetch(`https://vybin.herokuapp.com/api/v1/users/60f84736f3ab2a0015e9c267`,{
     method: 'GET',
       headers: {
         'Accept': 'application/json',

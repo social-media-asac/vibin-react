@@ -23,7 +23,7 @@ export default function TopBar() {
       <div className="topbarRight">
         <div className="topbarLinks">
        <Link to="/"> <button  onClick={contextType.logout}>  <span className="topbarLink" >LogOut</span></button> </Link> 
-          <Link to = "/user/:id">  <span className="topbarLink">My Profile </span>  </Link>
+          <Link to = {`user/:id`} >  <span className="topbarLink">My Profile </span>  </Link>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">

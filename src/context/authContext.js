@@ -7,7 +7,7 @@ import { useState ,useEffect  } from 'react';
 import base64 from 'base-64';
 import {Link} from 'react-router-dom';
 const API =process.env.REACT_APP_API_URL;
-const SECRET ='tasnim';
+const SECRET ='123456789';
 export const LoginContext = React.createContext();
 
 function LoginProvider(props){
@@ -24,7 +24,7 @@ const login = async(username, password)=>{
         const encoded = base64.encode(`${username}:${password}`)
         // const response = await superagent.post(`${API}/api/v1/auth/signin`)
         // .set('authorization', `Basic ${encoded}`);
-    let url = `https://tas-vybin.herokuapp.com/api/v1/auth/signin`
+    let url = `https://vybin.herokuapp.com/api/v1/auth/signin`
     const result = await fetch(
         url,
         {
@@ -84,7 +84,7 @@ const login = async(username, password)=>{
 //   }
 const signUp = async function (username,email, password,relationship,city, role) {
     console.log('here**********');
-    let url = `https://tas-vybin.herokuapp.com/api/v1/auth/register`;
+    let url = `https://vybin.herokuapp.com/api/v1/auth/register`;
     let body = {username,email, password,relationship,city, role };
     let result = await fetch(
         url,
