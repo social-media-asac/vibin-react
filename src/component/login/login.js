@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState , useContext } from 'react';
 // import { When } from 'react-if';
-import  {LoginContext}  from '../../contex/authContex';
+import  {LoginContext}  from '../../context/authContext';
 import {If , Then, Else } from 'react-if';
 import Facebook from '../facebook/facebook';
+import Home from '../../pages/home/home';
 const LogIn = (props) =>{
   const contextType = useContext(LoginContext);
   const [username, setUsername]= useState({});
@@ -26,7 +27,11 @@ const LogIn = (props) =>{
         <> 
           <If condition={contextType.loggedIn === true}>
                 <Then>
-                    <button onClick={contextType.logout}>Log out</button>
+                 
+                  <Link to = '/home'><Home/></Link>
+                 
+                  
+                    {/* <button onClick={contextType.logout}>Log out</button> */}
                 </Then>
                 <Else>
                         
@@ -45,11 +50,11 @@ const LogIn = (props) =>{
             <input onChange={handleChange} name='password' type="password" placeholder="Password" className="loginInput" />
             {/* <input onChange={handleChange} name='role' type="text" placeholder="role" className="loginInput" /> */}
             
-            {/* <Link to='/home'> */}
-            <button onClick={handleSubmit} type="submit" className="loginButton">Log In</button>
+            <Link to='/home'>
+            <button onClick={handleSubmit} type="submit" className="loginButton" > Log In</button> 
          
+            </Link>
              <Facebook/> 
-            {/* </Link> */}
             
             <span className="loginForgot">Forgot Password?</span>
             <Link to = '/register'>

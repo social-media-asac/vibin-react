@@ -5,6 +5,7 @@ import cookie from 'react-cookies';
 //https://www.npmjs.com/package/react-dotenv//
 import { useState ,useEffect  } from 'react';
 import base64 from 'base-64';
+import {Link} from 'react-router-dom';
 const API =process.env.REACT_APP_API_URL;
 const SECRET ='tasnim';
 export const LoginContext = React.createContext();
@@ -57,8 +58,11 @@ const login = async(username, password)=>{
     }
   };
  const logout = () => {
-     console.log('loggedOut')
+     console.log('loggedOut');
+    
     setLoginState(false, null, {});
+  
+    
   };
 //   const signUp = async( username,email, password,relationship,city, role)=>{
 
