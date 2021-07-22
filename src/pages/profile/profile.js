@@ -3,8 +3,35 @@ import TopBar from "../../component/topbar/topbar";
 import Sidebar from "../../component/sidebar/sidebar";
 import Feed from "../../component/feed/feed";
 import RightBar from "../../component/rightbar/rightbar";
+import { useState, useEffect } from "react";
+import cookie from 'react-cookies';
 
+const token = cookie.load('auth');
 export default function Profile() {
+  console.log('token', token);
+  const [profile, setProfile] = useState([])
+  useEffect(() => {
+    const getAllRequest = async () => {
+      const userInfoFromAPI = await fetchUserInfo()
+      setProfile(userInfoFromAPI)
+  }
+  getAllRequest()
+}, [])
+ // Fetch allRequest
+ const fetchUserInfo = async (_id) => {
+  const res = await fetch(`https://tas-vybin.herokuapp.com/api/v1/auth/user/${_id}`,{
+    method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      }
+  })
+  console.log(res,'res');
+  const data = await res.json()
+  console.log(data, 'get all request');
+  return data;
+}
   return (
     <>
       <TopBar />
