@@ -9,7 +9,7 @@ export default function TopBar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-     <Link to='/home' >   <span className="logo" >Vibein</span>  </Link> 
+     <Link to='/' >   <span className="logo" >Vibein</span>  </Link> 
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
@@ -23,7 +23,8 @@ export default function TopBar() {
       <div className="topbarRight">
         <div className="topbarLinks">
        <Link to="/"> <button  onClick={contextType.logout}>  <span className="topbarLink" >LogOut</span></button> </Link> 
-          <Link to = {`user/:id`} >  <span className="topbarLink">My Profile </span>  </Link>
+       <Link to={`/profile/${contextType.user.username}`}>
+            <span className="topbarLink">My Profile </span>  </Link>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
