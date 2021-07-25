@@ -1,14 +1,22 @@
 import Post from "../post/post";
 import Share from "../share/share";
 import "./feed.css";
-import React ,{useState,useEffect} from "react";
+import React ,{useState,useEffect,useContext} from "react";
 import axios from 'axios';
 // import { Posts } from "../../dummyData";
 import cookie from 'react-cookies';
-const token = cookie.load('auth');
+import  {LoginContext}  from '../../context/authContext';
+import AuthReducer  from '../../context/authReducer';
+
+
 
 export default function Feed({username}) {
-
+  const contextType  = useContext(LoginContext);
+ const  contextFollow = useContext(AuthReducer) ;
+ console.log('contextFollow',contextFollow);
+  const token = cookie.load('auth');
+  let user = contextType.user;
+  console.log('user from feed @@@@@@@@@@@@@@@@@@@@@2',user)
   console.log('token from feed',token);
   const [posts,setPosts] = useState([]);
  console.log('username',username)
@@ -30,11 +38,11 @@ export default function Feed({username}) {
     } 
     fetchPosts();
 
-  },[])
+  },[username])
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
+         {user.username===username&&<Share />}
         {posts.map((p) => (
           <Post key={p.id} post={p} />
         ))}

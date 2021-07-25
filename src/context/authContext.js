@@ -135,9 +135,7 @@ const login = async(username, password)=>{
     }
     
 }
-useEffect(() => {
-  
-})
+
  const validateToken = (token) => {
     try {
         console.log('secret',SECRET, 'token',token);
@@ -158,7 +156,7 @@ useEffect(() => {
     setLoginState(false, null, {});
   
     
-  };
+  }
 //   const signUp = async( username,email, password,relationship,city, role)=>{
 
 //     console.log('RESPONSE===',typeof(username),username,typeof(password),password)

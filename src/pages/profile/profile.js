@@ -79,6 +79,7 @@ useEffect(() => {
           </div>
           <div className="profileRightBottom">
             <Feed  username={username}/>
+            {console.log(user,'userfromrightbar')}
             <RightBar user={user}/>
           </div>
         </div>
