@@ -16,13 +16,20 @@ import { MoreVert } from "@material-ui/icons";
 // import { Users } from "../../dummyData";
 
 import axios from 'axios';
-import React ,{useState,useEffect} from "react";
+import React ,{useState,useEffect } from "react";
 import cookie from 'react-cookies';
 import {format} from 'timeago.js';
 import {Link} from 'react-router-dom';
+// import  {LoginContext}  from '../../context/authContext';
+
 const token = cookie.load('auth');
 
 export default function Post({ post }) {
+  // const contextType = useContext(LoginContext);
+  // let userInfo = contextType.user;
+  // console.log('userInfo', userInfo);
+  // let userId = contextType.user.userId;
+  // console.log('contextType from post', contextType);
   const [like,setLike] = useState(post.likes.length)
   const [isLiked,setIsLiked] = useState(false)
   const [user,setUser] = useState({});
