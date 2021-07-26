@@ -37,10 +37,24 @@ export default function Post({ post }) {
 
   }, [post.userId])
 
-  const likeHandler = () => {
+ 
+
+
+  const likeHandler = async () => {
+    
+    console.log('ppppppppppppppp', post);
+
+    let url =`https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`
+    let res = await axios.put(url
+       , {"body":null} 
+       ,{ headers: {"Authorization" : `Bearer ${token}`}}
+       )
+       console.log(res.data,'eeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+     
     setLike(isLiked ? like - 1 : like + 1)
-    setIsLiked(!isLiked)
+    setIsLiked(!isLiked) 
   }
+
 
   // const [boolean, setBoolean] = useState(false);
 
