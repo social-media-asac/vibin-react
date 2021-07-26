@@ -16,13 +16,17 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {Add,Remove} from "@material-ui/icons"
 import  {LoginContext}  from '../../context/authContext';
-import {AuthContext} from '../../context/authContext2';
+import {If,Else, Then} from "react-if";
+// import {AuthContext} from '../../context/authContext2';
 
 export default function Rightbar({ user }) {
 const token =cookie.load('auth');
   console.log('vvvvVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvvv',user);
   const [friends, setFriends] = useState([]);
-
+const [flag,setFlag] =useState(
+  true ? false : true
+);
+console.log(flag,'flag8888888888888888888888888888888888888888')
   // const { user1, dispatch } = useContext(AuthContext);
   // console.log(user1,'user1')
 
@@ -34,7 +38,7 @@ const token =cookie.load('auth');
 
   // console.log(user._id,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
-  const { user:currentUser, dispatch } = useContext(AuthContext);
+  const { user:currentUser, dispatch } = useContext(LoginContext);
 
   const [followed, setFollowed] = useState(
     data?data.followings.includes(user?._id):false
@@ -56,30 +60,44 @@ const token =cookie.load('auth');
     getFriends();
   },[user])
 
-  const handelClick = async() => {
-try {
-  console.log(contextType.user.userId,'contextType.user.userId')
-  if(followed){
-    let url =`https://vybin.herokuapp.com/api/v1/users/unfollow/60fca1c29101b80015936aee`
-   let res = await axios.put(url
-      ,{ headers: {"Authorization" : `Bearer ${token}`}}
-      ,{userId: '60f84736f3ab2a0015e9c267'})
-      console.log(res.data,'0000000000000000000000000000000000000000000000000')
-      dispatch({ type: "UNFOLLOW", payload: user._id });
 
-        }else {
-          let url =`https://vybin.herokuapp.com/api/v1/users/follow/${user._id}`
-          await axios.put(url
-            ,{ headers: {"Authorization" : `Bearer ${token}`}}
-            ,{userId: contextType.user.userId})
-          dispatch({ type: "FOLLOW", payload: user._id });
-        }
-        setFollowed(!followed);
+  const follow = async() => {
+try {
+  
+  
+    let url =`https://vybin.herokuapp.com/api/v1/users/follow/${user._id}`
+   let res = await axios.put(url
+    , {"body":null} 
+      ,{ headers: {"Authorization" : `Bearer ${token}`}}
+    
+      )
+      console.log(res.data,'0000000000000000000000000000000000000000000000000')
+      setFlag(false);
+       dispatch({ type: "UNFOLLOW", payload: user._id });
+
+        
+        
+       
 } catch (error) {
   console.log(error);
 }
       
   }
+
+  const unFollow = async() => {
+   try {
+    let url =`https://vybin.herokuapp.com/api/v1/users/unfollow/${user._id}`
+    await axios.put(url
+      , {"body":null} 
+      ,{ headers: {"Authorization" : `Bearer ${token}`}}
+      )
+      setFlag(true);
+     dispatch({ type: "FOLLOW", payload: user._id });
+   } catch (error) {
+     console.log(error)
+   }
+          
+      }
 
   const HomeRightbar = () => {
 
@@ -109,13 +127,21 @@ try {
     return (
 
       <>
+      
            {
             userAccount !== currentUser && 
            (
-             <button onClick={handelClick} type="button"className="rightBarFollowButton"> 
-              {followed ? "Unfollow" : "Follow"}
-            {followed ? <Remove /> : <Add />}
-             </button> 
+            <If condition={flag===true}>
+             <button onClick={follow} type="button"className="rightBarFollowButton"> 
+              Follow <Add />
+           
+              </button> 
+             <Else> 
+             <button onClick={unFollow} type="button"className="rightBarFollowButton"> 
+              UnFollow <Remove />
+              </button> 
+             </Else>
+             </If>
            ) }
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">
@@ -132,7 +158,8 @@ try {
             <span className="rightbarInfoValue">{user.relationship===1 ?'Single' :user.relationship===2 ?'Married' : '-' }</span>
           </div>
         </div>
-        <h4 className="rightbarTitle">User friends</h4>
+        {console.log('ahmadhahahhahahhahhahahahhahah',friends)}
+        <h4 className="rightbarTitle">User friends {`(${friends.length})`}</h4>
 
         
 

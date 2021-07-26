@@ -42,8 +42,8 @@ const LogIn = () =>{
         <> 
           <If condition={contextType.loggedIn === true}>
                 <Then>
-                
-                  <Link to = {`/${userName}`}><Home/></Link>
+                <Home/>
+                  {/* <Link to = {`/${userName}`}></Link> */}
                  
                   
                     <button onClick={contextType.logout}>Log out</button>

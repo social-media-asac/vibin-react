@@ -1,7 +1,7 @@
 import "./profile.css";
 import TopBar from "../../component/topbar/topbar";
 import Sidebar from "../../component/sidebar/sidebar";
-import Feed from "../../component/feed/feed";
+import Feed2 from "../../component/feed2/feed2";
 import RightBar from "../../component/rightbar/rightbar";
 import { useState, useEffect ,useContext} from "react";
 import cookie from 'react-cookies';
@@ -78,7 +78,7 @@ useEffect(() => {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed  username={username}/>
+            <Feed2  username={username}/>
             {console.log(user,'userfromrightbar')}
             <RightBar user={user}/>
           </div>

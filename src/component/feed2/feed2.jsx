@@ -28,7 +28,7 @@ export default function Feed({username}) {
 
       let res = 
       //  username ?
-       await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
+       await axios.get(url2 , { headers: {"Authorization" : `Bearer ${token}`} })
       //  :await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
       
       
@@ -38,6 +38,7 @@ export default function Feed({username}) {
           return new Date(p2.createdAt) - new Date(p1.createdAt);
         })
       );
+      
 
     } 
     fetchPosts();
