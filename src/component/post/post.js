@@ -125,7 +125,7 @@ export default function Post({ post }) {
                 <span className="postDate">{format(post.createdAt)}</span>
               </div>
               <div className="postTopRight">
-                <button onClick={shareHandler}> Update </button>
+                <Update Provider={post}/>
                 <button onClick={deleteHandler}>Delete</button>
               </div>
             </div>

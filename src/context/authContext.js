@@ -177,12 +177,12 @@ function LoginProvider(props) {
   //             console.log('Try again error in registeration', error.message);
   //         }
   //   }
-  const signUp = async function (username, email, password, relationship, city, role) {
+  const signUp = async function (username, email, password) {
     console.log('here**********');
 
     try {
       let url = `https://vybin.herokuapp.com/api/v1/auth/register`;
-      let body = { username, email, password, relationship, city, role };
+      let body = { username, email, password};
       let result = await fetch(
         url,
         {

@@ -2,6 +2,7 @@ import React ,{useRef} from 'react';
 import { Link } from 'react-router-dom';
 import { useState , useContext } from 'react';
 // import { When } from 'react-if';
+import './login.css'
 import  {LoginContext}  from '../../context/authContext';
 import {LoginCall} from '../../apiCall';
 import {If , Then, Else } from 'react-if';
@@ -11,7 +12,7 @@ const LogIn = () =>{
   const contextType  = useContext(LoginContext);
   const [username, setUsername]= useState({});
   const [password, setPassword]= useState({});
-  const [email, setEmail]= useState({});
+  // const [email, setEmail]= useState({});
   // const [role, setRole]= useState('user');
 //  const username = useRef();
 //  const password = useRef();
@@ -21,7 +22,7 @@ const LogIn = () =>{
   const handleChange = e => {
     setUsername({...username,[e.target.name]: e.target.value})
     setPassword({...password,[e.target.name]: e.target.value})
-    setEmail({...email,[e.target.name]: e.target.value})
+    // setEmail({...email,[e.target.name]: e.target.value})
     // setRole({...role,[e.target.name]: e.target.value})
   };
   const handleSubmit = e => {
@@ -43,7 +44,7 @@ const LogIn = () =>{
           <If condition={contextType.loggedIn === true}>
                 <Then>
                 
-                  <Link to = {`/${userName}`}><Home/></Link>
+                  <Home/>
                  
                   
                     <button onClick={contextType.logout}>Log out</button>
@@ -61,7 +62,7 @@ const LogIn = () =>{
         <div className="loginRight">
           <div className="loginBox">
           <input onChange={handleChange} name='username' type="text" placeholder="UserName" className="loginInput" />
-            <input onChange={handleChange} name='email' type="email" placeholder="Email" className="loginInput" />
+            {/* <input onChange={handleChange} name='email' type="email" placeholder="Email" className="loginInput" /> */}
             <input onChange={handleChange} name='password' type="password" placeholder="Password" className="loginInput" />
              {/* <input onChange={handleChange} name='role' type="text" placeholder="role" className="loginInput" />  */}
             

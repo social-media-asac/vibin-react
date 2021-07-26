@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-// import './App.css';
+import './App.scss';
 import Main from '../src/component/main/main'
 import LoginProvider from './context/authContext';
 function App() {
