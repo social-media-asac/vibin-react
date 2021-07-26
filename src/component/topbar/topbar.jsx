@@ -5,7 +5,7 @@ import  {LoginContext}  from '../../context/authContext';
 import { useState , useContext ,useEffect} from 'react';
 import axios from 'axios';
 import cookie from 'react-cookies';
-
+import Setting from '../setting/setting'
 export default function TopBar({username}) {
     const contextType = useContext(LoginContext);
     const [user,setUser] =useState({});
@@ -44,6 +44,7 @@ export default function TopBar({username}) {
        <Link to="/"> <button  onClick={contextType.logout}>  <span className="topbarLink" >LogOut</span></button> </Link> 
        <Link to={`/profile/${contextType.user.username}`}>
             <span className="topbarLink">My Profile </span>  </Link>
+          <Link to='/setting' >  <span className="topbarLink">Setting </span>  </Link>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">

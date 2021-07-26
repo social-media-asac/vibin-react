@@ -30,7 +30,7 @@ console.log(flag,'flag8888888888888888888888888888888888888888')
   // console.log(user1,'user1')
   const contextType  = useContext(LoginContext);
   let userAccount = contextType.user.username;
-  // console.log(friends,'friends');
+  console.log(userAccount,'friends');
   let data = contextType.userData.user;
   let data2=contextType.userData;
   // console.log(user._id,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
