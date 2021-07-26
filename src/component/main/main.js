@@ -12,10 +12,10 @@ const Main = (props) =>{
         <>
         {/* <Header/> */}
         <Switch>
-          <Route exact path="/" component={LogInPage} > <LogInPage /> </Route>
+          <Route exact path="/" component={LogInPage}  > <LogInPage /> </Route>
          
-          <Route  exact path="/user/:id" component={ProfilePage} ><ProfilePage /> </Route>
-          <Route  exact path="/home" component={Home} > <Home /></Route>
+          <Route  exact path="/profile/:username" component={ProfilePage} ><ProfilePage /> </Route>
+          <Route  exact path="/ahmad" component={Home} > <Home /></Route>
           <Route  exact path="/register" component={RegisterPage} > <RegisterPage/> </Route>
         </Switch>
         {/* <Footer/> */}
