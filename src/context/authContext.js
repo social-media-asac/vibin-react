@@ -135,10 +135,9 @@ function LoginProvider(props) {
     }
 
   }
-  useEffect(() => {
 
-  })
-  const validateToken = (token) => {
+
+ const validateToken = (token) => {
     try {
       console.log('secret', SECRET, 'token', token);
 

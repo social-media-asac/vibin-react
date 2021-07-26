@@ -1,35 +1,17 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// const Post= (props) =>{
-//         return (
-//             <>
-//               <h4>Post here</h4>
-//               <textarea placeholder = "post something in your mind"></textarea>
-//             <Link to='/home'>  <button type="submit">Share</button></Link>
-//             </>
-//         )
-// }
-// export default Post;
-
 import "./post.css";
 import { MoreVert } from "@material-ui/icons";
-// import { Users } from "../../dummyData";
-
 import axios from 'axios';
 import React, { useState, useEffect } from "react";
 import cookie from 'react-cookies';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import { If, Then, Else } from 'react-if';
-
-// import  {LoginContext}  from '../../context/authContext';
 import Update from '../update/Update';
 import Delete from '../delete/Delete';
-
 import Share from '../share/share';
-
 const token = cookie.load('auth');
-
+let IconLike ='https://image.similarpng.com/very-thumbnail/2020/06/Icon-like-button-transparent-PNG.png'
+let IconLove ='https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg'
 export default function Post({ post }) {
   // const contextType = useContext(LoginContext);
   // let userInfo = contextType.user;
@@ -40,6 +22,7 @@ export default function Post({ post }) {
   const [isLiked, setIsLiked] = useState(false)
   const [user, setUser] = useState({});
 
+  // const [boolean, setBoolean] = useState(false);
   useEffect(() => {
     let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
     const fetchUser = async () => {
@@ -59,46 +42,39 @@ export default function Post({ post }) {
     setIsLiked(!isLiked)
   }
 
-  const [boolean, setBoolean] = useState(false);
+  // const [boolean, setBoolean] = useState(false);
 
+  // const deleteHandler = async () => {
+
+  
   const deleteHandler = async () => {
-
     let postId = post._id;
     let url = `https://vybin.herokuapp.com/api/v1/posts/${postId}`
     await axios.delete(url, { headers: { "Authorization": `Bearer ${token}` } })
     window.location.reload()
-
-
   }
-
   console.log(post, 'POST POST');
+  // const shareHandler = () => {
+
+  // }
 
 
+  // const updateHandler = async () => {
 
-  const shareHandler = () => {
-
-
-
-
-  }
+  //   let postId = post._id;
+  //   let url = `https://vybin.herokuapp.com/api/v1/posts/${postId}`;
 
 
-  const updateHandler = async () => {
+  //   await axios.put(url, { headers: { "Authorization": `Bearer ${token}` } }, {})
 
-    let postId = post._id;
-    let url = `https://vybin.herokuapp.com/api/v1/posts/${postId}`;
-
-
-    await axios.put(url, { headers: { "Authorization": `Bearer ${token}` } }, {})
-
-  }
+  // }
 
   return (
     <If>
 
-      setBoolean=true;
+      {/* setBoolean=true;
 
-      {setBoolean === true}
+      {setBoolean === true} */}
       <Then>
 
         <Share />
@@ -136,8 +112,8 @@ export default function Post({ post }) {
             </div>
             <div className="postBottom">
               <div className="postBottomLeft">
-                <img className="likeIcon" src="assets/like.png" onClick={likeHandler} alt="" />
-                <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" />
+                <img className="likeIcon" src={IconLike} onClick={likeHandler} alt="" />
+                <img className="likeIcon" src={IconLove} onClick={likeHandler} alt="" />
                 <span className="postLikeCounter">{like} people like it</span>
               </div>
               <div className="postBottomRight">
@@ -145,6 +121,7 @@ export default function Post({ post }) {
               </div>
             </div>
           </div>
+     
         </div>
 
       </Else>

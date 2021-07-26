@@ -12,7 +12,7 @@ const Home = (props) =>{
   console.log(contextType,'contextType from home page ')
     return (
         <>
-          <TopBar />
+          <TopBar username={contextType.user.username} />
 
           <div className="homeContainer">
         <SideBar />

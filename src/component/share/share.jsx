@@ -7,7 +7,6 @@ import { useRef } from "react";
 import axios from "axios";
 import cookie from 'react-cookies'
 const token = cookie.load('auth');
-
 export default function Share() {
   const contextType = useContext(LoginContext);
   const desc = useRef();
