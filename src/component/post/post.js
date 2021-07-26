@@ -59,7 +59,7 @@ export default function Post({ post }) {
     setIsLiked(!isLiked)
   }
 
-  const [boolean, setBoolean]= useState(false);
+  const [boolean, setBoolean] = useState(false);
 
   const deleteHandler = async () => {
 
@@ -96,9 +96,9 @@ export default function Post({ post }) {
   return (
     <If>
 
-       setBoolean=true;
+      setBoolean=true;
 
-      {setBoolean===true}
+      {setBoolean === true}
       <Then>
 
         <Share />

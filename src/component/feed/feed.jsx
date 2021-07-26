@@ -7,6 +7,8 @@ import axios from 'axios';
 import cookie from 'react-cookies';
 const token = cookie.load('auth');
 
+console.log(token, 'TOKEN TOKEN TOKEN')
+
 export default function Feed({username}) {
 
   console.log('token from feed',token);
