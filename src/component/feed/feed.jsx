@@ -1,4 +1,4 @@
-import Post from "../post/post";
+import Post2 from "../post2/post2";
 import Share from "../share/share";
 import "./feed.css";
 import React ,{useState,useEffect,useContext} from "react";
@@ -48,7 +48,7 @@ export default function Feed({username}) {
       <div className="feedWrapper">
          {user.username===username&&<Share />}
         {posts.map((p) => (
-          <Post key={p.id} post={p} />
+          <Post2 key={p.id} post={p} />
         ))}
       </div>
     </div>

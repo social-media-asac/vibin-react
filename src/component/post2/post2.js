@@ -27,7 +27,7 @@ export default function Post({ post }) {
   const [user, setUser] = useState({});
 
   const [boolean, setBoolean] = useState(false);
-  const WAIT_TIME = 1000
+  //  const WAIT_TIME = 5000
   useEffect(() => {
     // const id = setInterval(() => {
     let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
@@ -43,7 +43,7 @@ export default function Post({ post }) {
     fetchUser();
   // }, WAIT_TIME);
   // return () => clearInterval(id);
-  }, []);
+  }, [post]);
 
   // const likeHandler = () => {
   //   setLike(isLiked ? like - 1 : like + 1)
@@ -104,8 +104,8 @@ export default function Post({ post }) {
                 <span className="postDate">{format(post.createdAt)}</span>
               </div>
               <div className="postTopRight">
-                <Update Provider={post} />
-                <Button onClick={deleteHandler}>Delete</Button>
+                {/* <Update Provider={post} />
+                <Button onClick={deleteHandler}>Delete</Button> */}
               </div>
               {boolean? <Link to={`/`}>ssssssssssssssssss</Link>:true}
             </div>
