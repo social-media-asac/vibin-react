@@ -57,7 +57,7 @@ export default function Share() {
     // }
     try {
       await axios.post('https://vybin.herokuapp.com/api/v1/posts',newPost,  { headers: {"Authorization" : `Bearer ${token}`} })
-      window.location.reload()
+       window.location.reload()
     } catch (error) {
       console.log(error);
     }
