@@ -39,6 +39,8 @@ console.log(flag,'flag8888888888888888888888888888888888888888')
     data?data.followings.includes(user?._id):false
   );
   console.log(data2,'888888888888888888888888887777777777777777777777777777777777777');
+
+  
   useEffect (()=>{
     const getFriends = async () =>{
       try{
@@ -92,6 +94,7 @@ try {
         <img className="rightbarAd" src="assets/ad.png" alt="" />
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
+          { console.log(friends,'farah!!')}
           {Users.map((u) => (
             <Online key={u.id} user={u} />
           ))}
@@ -135,6 +138,7 @@ try {
         {console.log('ahmadhahahhahahhahhahahahhahah',friends)}
         <h4 className="rightbarTitle">User friends {`(${friends.length})`}</h4>
         <div className="rightbarFollowings"> 
+        { console.log(friends,'farah!!')}
         {friends.map((friend)=>(
         <Link to={`/profile/${friend.username}`} style={{textDecoration:"none"}}>
           <div className="rightbarFollowing">

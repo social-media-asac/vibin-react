@@ -57,7 +57,7 @@ useEffect(() => {
     <>
       <TopBar />
       <div className="profile">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
