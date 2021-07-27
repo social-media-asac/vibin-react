@@ -54,18 +54,19 @@ export default function Post({ post }) {
 
   // const deleteHandler = async () => {
   useEffect(() => {
-    console.log(userInfo.userId, "userInfo.userId@@@@@@@");
+    // console.log(userInfo.userId, "userInfo.userId@@@@@@@");
+
     setIsLiked(post.likes.includes(userInfo.userId));
   }, [userInfo.userId, post.likes]);
   const likeHandler = async () => {
     let url = `https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`;
-    console.log(url, "|||||||||||||||||||||||||||||||||");
+    // console.log(url, "|||||||||||||||||||||||||||||||||");
     let res = await axios.put(
       url,
       { body: null },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    console.log(res, "eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    // console.log(res, "eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -77,7 +78,7 @@ export default function Post({ post }) {
     await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
     // window.location.reload();
   };
-  console.log(post, "POST POST");
+  // console.log(post, "POST POST");
 
   return (
     <If>

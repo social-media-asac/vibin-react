@@ -17,7 +17,7 @@ const token = cookie.load('auth');
 
 const Update = (props) =>{
     
-  console.log(props.Provider.desc,'***********')
+  // console.log(props.Provider.desc,'***********')
   const [post,setUpdPost] = useState({});
   const [redirect,setRedirect] = useState(null);
   const [show, setShow] = useState(false);
@@ -36,7 +36,7 @@ const Update = (props) =>{
 
 // Fetch Request to update it
 const fetchUpdPost = async (updPost) =>{
-  console.log('click',updPost);
+  // console.log('click',updPost);
   let res = await fetch(`https://vybin.herokuapp.com/api/v1/posts/${props.Provider._id}`,{
     method: 'PUT',
     body: JSON.stringify(updPost),
@@ -47,7 +47,7 @@ const fetchUpdPost = async (updPost) =>{
     }
   })
         let result = await res.json();
-        console.log(result, 'update post result');
+        // console.log(result, 'update post result');
         setRedirect('/');
         return result;
       }

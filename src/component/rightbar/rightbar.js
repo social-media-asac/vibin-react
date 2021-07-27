@@ -20,17 +20,19 @@ import {If,Else, Then} from "react-if";
 // import {AuthContext} from '../../context/authContext2';
 export default function Rightbar({ user }) {
 const token =cookie.load('auth');
-  console.log('vvvvVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvvv',user);
+
+  // console.log('vvvvVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvvv',user);
+  
   const [friends, setFriends] = useState([]);
 const [flag,setFlag] =useState(
   true
 );
-console.log(flag,'flag8888888888888888888888888888888888888888')
+// console.log(flag,'flag8888888888888888888888888888888888888888')
   // const { user1, dispatch } = useContext(AuthContext);
   // console.log(user1,'user1')
   const contextType  = useContext(LoginContext);
   let userAccount = contextType.user.username;
-  console.log(userAccount,'friends');
+  // console.log(userAccount,'friends');
   let data = contextType.userData.user;
   let data2=contextType.userData;
   // console.log(user._id,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
@@ -38,7 +40,7 @@ console.log(flag,'flag8888888888888888888888888888888888888888')
   const [followed, setFollowed] = useState(
     data?data.followings.includes(user?._id):false
   );
-  console.log(data2,'888888888888888888888888887777777777777777777777777777777777777');
+  // console.log(data2,'888888888888888888888888887777777777777777777777777777777777777');
 
   
   useEffect (()=>{
@@ -46,7 +48,7 @@ console.log(flag,'flag8888888888888888888888888888888888888888')
       try{
         let url =`https://vybin.herokuapp.com/api/v1/users/followers/${user._id}`;
         let friendList =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
-        console.log(friendList,'friendList');
+        // console.log(friendList,'friendList');
         setFriends(friendList.data);
       }
       catch(error){
@@ -62,7 +64,7 @@ try {
     , {"body":null} 
       ,{ headers: {"Authorization" : `Bearer ${token}`}}
       )
-      console.log(res.data,'0000000000000000000000000000000000000000000000000')
+      // console.log(res.data,'0000000000000000000000000000000000000000000000000')
       setFlag(false);
        dispatch({ type: "UNFOLLOW", payload: user._id });
 } catch (error) {
@@ -79,7 +81,7 @@ try {
       setFlag(true);
      dispatch({ type: "FOLLOW", payload: user._id });
    } catch (error) {
-     console.log(error)
+    //  console.log(error)
    }
       }
   const HomeRightbar = () => {
@@ -94,7 +96,7 @@ try {
         <img className="rightbarAd" src="assets/ad.png" alt="" />
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
-          { console.log(friends,'farah!!')}
+          {/* { console.log(friends,'farah!!')} */}
           {Users.map((u) => (
             <Online key={u.id} user={u} />
           ))}
@@ -135,10 +137,10 @@ try {
             <span className="rightbarInfoValue">{user.relationship===1 ?'Single' :user.relationship===2 ?'Married' : '-' }</span>
           </div>
         </div>
-        {console.log('ahmadhahahhahahhahhahahahhahah',friends)}
+        {/* {console.log('ahmadhahahhahahhahhahahahhahah',friends)} */}
         <h4 className="rightbarTitle">User friends {`(${friends.length})`}</h4>
         <div className="rightbarFollowings"> 
-        { console.log(friends,'farah!!')}
+        {/* { console.log(friends,'farah!!')} */}
         {friends.map((friend)=>(
         <Link to={`/profile/${friend.username}`} style={{textDecoration:"none"}}>
           <div className="rightbarFollowing">

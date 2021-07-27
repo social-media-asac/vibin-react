@@ -7,7 +7,7 @@ try {
     let token = cookie.load('auth');
     let url = `https://vybin.herokuapp.com/api/v1/auth/signin`
     let res =  await axios.post(url  ,{ headers: {"Authorization" : `Bearer ${token}`} })
-    console.log(res,'8888888888888888')
+    // console.log(res,'8888888888888888')
    
     
      dispatch({type: "LOGIN_SUCCESS"},{payload:res.data})

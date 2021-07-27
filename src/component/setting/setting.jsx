@@ -4,24 +4,26 @@ import { Link, Redirect } from 'react-router-dom';
 import { When } from 'react-if';
 import axios from 'axios';
 import './setting.css';
+import TopBar from '../topbar/topbar';
+
 // import {AuthContextProvider} from './context/authContext2';
 import { Form, Button } from 'react-bootstrap';
 import cookie from 'react-cookies';
 const token = cookie.load('auth');
-console.log('token 5555555555', token);
+// console.log('token 5555555555', token);
 function Setting() {
   const contextType = useContext(LoginContext);
   let userAccount = contextType.user;
 
   const [userInfo, setuserInfo] = useState({});
   const [redirect, setRedirect] = useState(null);
-  console.log('userInfo /////////', userInfo);
+  // console.log('userInfo /////////', userInfo);
 
   
   const updateHandler = (e) => {
     e.preventDefault();
     fetchUpdPost(userInfo);
-    console.log('e.target **********', e.target.relationship.value);
+    // console.log('e.target **********', e.target.relationship.value);
     setuserInfo(
       {
         profilePicture: e.target.profilePicture.value,
@@ -37,7 +39,7 @@ function Setting() {
   }
   let userId = contextType.user.userId
   const fetchUpdPost = async (user) => {
-    console.log('click',user);
+    // console.log('click',user);
     let res = await fetch(`https://vybin.herokuapp.com/api/v1/users/${userAccount.userId}`,{
       method: 'PUT',
       body: JSON.stringify(user),
@@ -48,7 +50,7 @@ function Setting() {
       }
     })
           let result = await res.json();
-          console.log(result, 'update  result');
+          // console.log(result, 'update  result');
           // setRedirect('/');
           return result;
     // let url = `https://vybin.herokuapp.com/api/v1/users/${userId}`;
@@ -75,6 +77,8 @@ function Setting() {
   }
   return (
 
+    <>
+    <TopBar/>
     <div id="formSetting">
       {/* <When condition={redirect}><Redirect to={redirect}></Redirect></When> */}
       <Form  onSubmit={updateHandler}>
@@ -118,22 +122,23 @@ function Setting() {
           <Form.Control name="password" type="password" placeholder="Change your password" />
         </Form.Group>
 
-        <Button variant="primary" type="submit" >
+        <Link to ={`/`}> <Button variant="primary" type="submit" >
           Submit
         </Button>
-       
+       </Link>
       </Form>
       
        <br></br>
        <Form>
        <Form.Group>
-    <Link to ={`/profile/${userAccount.username}`}> <Button className="deactivateAcoount" > Cancle</Button></Link></Form.Group></Form> 
+    <Link to ={`/`}> <Button className="deactivateAcoount" > Cancle</Button></Link></Form.Group></Form> 
       <Form>
        <Form.Group>
 <When condition={redirect}><Redirect to={redirect}></Redirect></When>
      <Button  onClick={deleteAccount}> Deactivate my account</Button></Form.Group></Form>
      
     </div>
+    </>
   );
 }
 

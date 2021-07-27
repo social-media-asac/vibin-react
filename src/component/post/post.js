@@ -16,12 +16,16 @@ let IconLike =
   "https://image.similarpng.com/very-thumbnail/2020/06/Icon-like-button-transparent-PNG.png";
 let IconLove =
   "https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg";
+  
 export default function Post({ post }) {
+
   const contextType = useContext(LoginContext);
   let userInfo = contextType.user;
+
   // console.log('userInfo', userInfo);
   // let userId = contextType.user.userId;
   // console.log('contextType from post', contextType);
+
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
@@ -35,14 +39,16 @@ export default function Post({ post }) {
       await axios
         .get(url, { headers: { Authorization: `Bearer ${token}` } })
         .then((res) => {
+
           // console.log(res.data);
+
           setUser(res.data);
         });
     };
-    
+
     fetchUser();
-  // }, WAIT_TIME);
-  // return () => clearInterval(id);
+    // }, WAIT_TIME);
+    // return () => clearInterval(id);
   }, []);
 
   // const likeHandler = () => {
@@ -54,18 +60,26 @@ export default function Post({ post }) {
 
   // const deleteHandler = async () => {
   useEffect(() => {
-    console.log(userInfo.userId, "userInfo.userId@@@@@@@");
+
+    // console.log(userInfo.userId, "userInfo.userId@@@@@@@");
+
     setIsLiked(post.likes.includes(userInfo.userId));
   }, [userInfo.userId, post.likes]);
+
   const likeHandler = async () => {
+
     let url = `https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`;
-    console.log(url, "|||||||||||||||||||||||||||||||||");
+
+    // console.log(url, "|||||||||||||||||||||||||||||||||");
+
     let res = await axios.put(
       url,
       { body: null },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    console.log(res, "eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
+    // console.log(res, "eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -77,7 +91,8 @@ export default function Post({ post }) {
     await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
     // window.location.reload();
   };
-  console.log(post, "POST POST");
+
+  // console.log(post, "POST POST");
 
   return (
     <If>
@@ -107,11 +122,13 @@ export default function Post({ post }) {
                 <Update Provider={post} />
                 <Button onClick={deleteHandler}>Delete</Button>
               </div>
-              {boolean? <Link to={`/`}>ssssssssssssssssss</Link>:true}
+              {boolean ? <Link to={`/`}>ssssssssssssssssss</Link> : true}
             </div>
             <div className="postCenter">
               <span className="postText">{post?.desc}</span>
+
               {/* {console.log(post,'ppppppppppp')} */}
+
               <img className="postImg" src={post.img} alt="" />
             </div>
             <div className="postBottom">

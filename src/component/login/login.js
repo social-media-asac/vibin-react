@@ -6,7 +6,6 @@ import './login.css'
 import  {LoginContext}  from '../../context/authContext';
 import {LoginCall} from '../../apiCall';
 import {If , Then, Else } from 'react-if';
-import Facebook from '../facebook/facebook';
 import Home from '../../pages/home/home';
 const LogIn = () =>{
   const contextType  = useContext(LoginContext);
@@ -27,7 +26,9 @@ const LogIn = () =>{
   };
   const handleSubmit = e => {
     e.preventDefault();
+    
     // console.log('username',username.username);
+
     contextType.login(username.username, password.password);
   };
 
@@ -37,7 +38,9 @@ const LogIn = () =>{
   //   contextType.login({username:username.current.value, password:password.current.value});
   //   //  console.log(username.current.value)
   // }
-  console.log(contextType,'contextTyp');
+
+  // console.log(contextType,'contextTyp');
+
   let userName =contextType.user?contextType.user.username:null;
    return (
         <> 
@@ -70,7 +73,7 @@ const LogIn = () =>{
             <button onClick={handleSubmit} type="submit" className="loginButton" > Log In</button> 
          
             
-             <Facebook/> 
+             
             
             <span className="loginForgot">Forgot Password?</span>
             <Link to = '/register'>

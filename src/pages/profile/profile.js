@@ -15,7 +15,7 @@ export default function Profile() {
   // let user = contextType.userData.user;
   // console.log('user@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2', user);
   const [user, setUser] = useState([])
- console.log('contextType in profile page ',contextType)
+//  console.log('contextType in profile page ',contextType)
   const username = useParams().username;
 //   useEffect(() => {
 //     const getAllRequest = async () => {
@@ -79,7 +79,7 @@ useEffect(() => {
           </div>
           <div className="profileRightBottom">
             <Feed2  username={username}/>
-            {console.log(user,'userfromrightbar')}
+            {/* {console.log(user,'userfromrightbar')} */}
             <RightBar user={user}/>
           </div>
         </div>
