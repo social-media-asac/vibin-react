@@ -7,7 +7,7 @@ import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { If, Then, Else } from "react-if";
 import Update from "../update/Update";
-// import Delete from '../delete/Delete';
+import Delete from '../delete/Delete';
 import Share from "../share/share";
 import { LoginContext } from "../../context/authContext";
 import { Button } from "react-bootstrap";
@@ -84,13 +84,13 @@ export default function Post({ post }) {
     setIsLiked(!isLiked);
   };
 
-  const deleteHandler = async () => {
-    setBoolean(true);
-    let postId = post._id;
-    let url = `https://vybin.herokuapp.com/api/v1/posts/${postId}`;
-    await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
-    // window.location.reload();
-  };
+  // const deleteHandler = async () => {
+  //   setBoolean(true);
+  //   let postId = post._id;
+  //   let url = `https://vybin.herokuapp.com/api/v1/posts/${postId}`;
+  //   await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
+  //   // window.location.reload();
+  // };
 
   // console.log(post, "POST POST");
 
@@ -120,9 +120,10 @@ export default function Post({ post }) {
               </div>
               <div className="postTopRight">
                 <Update Provider={post} />
-                <Button onClick={deleteHandler}>Delete</Button>
+                <Delete Provider={post} />
+                {/* <Button onClick={deleteHandler}>Delete</Button> */}
               </div>
-              {boolean ? <Link to={`/`}>ssssssssssssssssss</Link> : true}
+              {/* {boolean ? <Link to={`/`}>ssssssssssssssssss</Link> : true} */}
             </div>
             <div className="postCenter">
               <span className="postText">{post?.desc}</span>
