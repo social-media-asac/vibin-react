@@ -1,8 +1,9 @@
 import { useState, useContext } from 'react';
 import { LoginContext } from '../../context/authContext';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { When } from 'react-if';
 import axios from 'axios';
+import './setting.css';
 // import {AuthContextProvider} from './context/authContext2';
 import { Form, Button } from 'react-bootstrap';
 import cookie from 'react-cookies';
@@ -20,7 +21,7 @@ function Setting() {
   const updateHandler = (e) => {
     e.preventDefault();
     fetchUpdPost(userInfo);
-    console.log('e.target **********', e.target.city.value);
+    console.log('e.target **********', e.target.relationship.value);
     setuserInfo(
       {
         profilePicture: e.target.profilePicture.value,
@@ -74,9 +75,9 @@ function Setting() {
   }
   return (
 
-    <div>
+    <div id="formSetting">
       {/* <When condition={redirect}><Redirect to={redirect}></Redirect></When> */}
-      <Form onSubmit={updateHandler}>
+      <Form  onSubmit={updateHandler}>
         <Form.Group className="mb-3" >
           <Form.Label>Profile Picture</Form.Label>
           <Form.Control name="profilePicture" type="text" placeholder="Change your profile picture" />
@@ -101,13 +102,17 @@ function Setting() {
           <Form.Label>From </Form.Label>
           <Form.Control name="from" type="text" placeholder="Where are you from?" />
         </Form.Group>
-
-        <Form.Group className="mb-3" >
-          <Form.Label>Relationship </Form.Label>
+     
+        {/* <Form.Group className="mb-3" >
+          <Form.Label>Relationship : </Form.Label>
           <Form.Control name="relationship" type="number" placeholder="Where are you from?" />
-        </Form.Group>
+        </Form.Group> */}
 
-
+        <select class="form-select" aria-label="Default select example" name="relationship">
+          <option id="relationship" name="relationship" value="1"> single </option>
+          <option id="relationship" name="relationship" value="2"> Married </option>
+          <option id="relationship" name="relationship" value="3"> other </option>
+        </select>
         <Form.Group className="mb-3" >
           <Form.Label>Password </Form.Label>
           <Form.Control name="password" type="password" placeholder="Change your password" />
@@ -116,9 +121,18 @@ function Setting() {
         <Button variant="primary" type="submit" >
           Submit
         </Button>
+       
       </Form>
+      
+       <br></br>
+       <Form>
+       <Form.Group>
+    <Link to ={`/profile/${userAccount.username}`}> <Button className="deactivateAcoount" > Cancle</Button></Link></Form.Group></Form> 
+      <Form>
+       <Form.Group>
 <When condition={redirect}><Redirect to={redirect}></Redirect></When>
-      <Button onClick={deleteAccount}> Deactivate my account</Button>
+     <Button  onClick={deleteAccount}> Deactivate my account</Button></Form.Group></Form>
+     
     </div>
   );
 }

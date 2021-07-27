@@ -23,7 +23,7 @@ const token =cookie.load('auth');
   console.log('vvvvVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvvv',user);
   const [friends, setFriends] = useState([]);
 const [flag,setFlag] =useState(
-  true ? false : true
+  true
 );
 console.log(flag,'flag8888888888888888888888888888888888888888')
   // const { user1, dispatch } = useContext(AuthContext);

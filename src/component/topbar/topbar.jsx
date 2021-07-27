@@ -9,6 +9,7 @@ import Setting from '../setting/setting'
 export default function TopBar({username}) {
     const contextType = useContext(LoginContext);
     const [user,setUser] =useState({});
+    const [username1,setUsername] =useState('')
     const token = cookie.load('auth');
     useEffect(() => {
   
@@ -23,11 +24,30 @@ export default function TopBar({username}) {
       } 
       fetchPosts();
     
-    },[])
-
+    },[username,token])
+    const handlerChange = (e) => {
+      e.preventDefault();
+      let value = document.getElementById('search').value
+     //  let value = e.target.search.value;
+      const fetchPosts = async()=>{
+         let url =`https://vybin.herokuapp.com/api/v1/users?username=${value}`;
+         let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
+         console.log(res.data,'res.data');
+         //  setUser(res.data);
+         document.getElementById('search').value='';
+         document.getElementById('search').placeholder='';
+         
+         // e.target.search.value='';
+         // e.target.search.placeholder='';
+         // e.target.btn.value='';
+     setUsername(res.data);
+       } 
+       fetchPosts();
+       setUsername('');
+     }
   return (
     <div className="topbarContainer">
-      <div className="topbarLeft">
+      {/* <div className="topbarLeft">
      <Link to='/' >   <span className="logo" >Vibein</span>  </Link> 
       </div>
       <div className="topbarCenter">
@@ -37,6 +57,32 @@ export default function TopBar({username}) {
             placeholder="Search for friend, post or video"
             className="searchInput"
           />
+        </div> */}
+        <div className="topbarLeft">
+     <Link to='/' >   <span className="logo" >Vibein</span>  </Link> 
+      </div>
+      <div className="topbarCenter">
+        <div className="searchbar">
+          {/* <Search className="searchIcon" /> */}
+          {/* <form onSubmit={handlerChange}> */}
+<input
+  placeholder="Search for friend, post or video"
+  className="searchInput"
+  id="search"
+  />
+{ console.log(username1,'!!!!!@@@@@@@#####$$$$$%%%%%^^^^^')     }  
+<button type="submit" className="search" id="btn" onClick={handlerChange} > <Search className="searchIcon"  /> </button>
+  {/* </form>  */}
+            {username1? <Link  to={"/profile/"+username1.username} style={{textDecoration:"none"}}>
+          {/* <div  >
+           <span> <img className="searchImg" src={username1.profilePicture} alt="" /> </span> 
+          </div> */}
+        </Link> :null}
+        {username1? <Link  to={"/profile/"+username1.username} style={{textDecoration:"none"}}>
+          <div  >
+            <span className="searchUser" style={{marginBottom:"30px"}}>{username1.username}</span>
+          </div>
+        </Link> :null}
         </div>
       </div>
       <div className="topbarRight">

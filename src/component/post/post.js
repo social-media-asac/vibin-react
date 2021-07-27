@@ -1,20 +1,22 @@
 import "./post.css";
-import { MoreVert } from "@material-ui/icons";
+// import { MoreVert } from "@material-ui/icons";
 import axios from 'axios';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import cookie from 'react-cookies';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import { If, Then, Else } from 'react-if';
 import Update from '../update/Update';
-import Delete from '../delete/Delete';
+// import Delete from '../delete/Delete';
 import Share from '../share/share';
+import {LoginContext} from '../../context/authContext';
+import {Button} from 'react-bootstrap'
 const token = cookie.load('auth');
 let IconLike ='https://image.similarpng.com/very-thumbnail/2020/06/Icon-like-button-transparent-PNG.png'
 let IconLove ='https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg'
 export default function Post({ post }) {
-  // const contextType = useContext(LoginContext);
-  // let userInfo = contextType.user;
+  const contextType = useContext(LoginContext);
+  let userInfo = contextType.user;
   // console.log('userInfo', userInfo);
   // let userId = contextType.user.userId;
   // console.log('contextType from post', contextType);
@@ -37,15 +39,29 @@ export default function Post({ post }) {
 
   }, [post.userId])
 
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1)
-    setIsLiked(!isLiked)
-  }
+  // const likeHandler = () => {
+  //   setLike(isLiked ? like - 1 : like + 1)
+  //   setIsLiked(!isLiked)
+  // }
 
   // const [boolean, setBoolean] = useState(false);
 
   // const deleteHandler = async () => {
-
+    useEffect(() => {
+      console.log(userInfo.userId,'userInfo.userId@@@@@@@')
+      setIsLiked(post.likes.includes(userInfo.userId));
+    }, [userInfo.userId, post.likes]);
+    const likeHandler = async () => {
+      let url =`https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`
+      console.log(url,'|||||||||||||||||||||||||||||||||');
+      let res = await axios.put(url
+       , {"body":null} 
+         ,{ headers: {"Authorization" : `Bearer ${token}`}}
+         )
+         console.log(res,'eeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+         setLike(isLiked ? like - 1 : like + 1)
+      setIsLiked(!isLiked)
+    }
   
   const deleteHandler = async () => {
     let postId = post._id;
@@ -102,7 +118,7 @@ export default function Post({ post }) {
               </div>
               <div className="postTopRight">
                 <Update Provider={post}/>
-                <button onClick={deleteHandler}>Delete</button>
+                <Button onClick={deleteHandler}>Delete</Button>
               </div>
             </div>
             <div className="postCenter">
