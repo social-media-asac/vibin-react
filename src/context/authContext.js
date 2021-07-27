@@ -124,14 +124,14 @@ function LoginProvider(props) {
         }
       );
       let data = await result.json();
-      console.log('data/////////////////////////////////////////////////', data);
+      // console.log('data/////////////////////////////////////////////////', data);
 
       validateToken(data.token);
       setUserData(data);
-      console.log('userData*****************************************', userData);
+      // console.log('userData*****************************************', userData);
     } catch (error) {
       setInvalid(false);
-      console.log('Failed to signIn', error.message)
+      // console.log('Failed to signIn', error.message)
     }
 
   }
@@ -139,7 +139,7 @@ function LoginProvider(props) {
 
  const validateToken = (token) => {
     try {
-      console.log('secret', SECRET, 'token', token);
+      // console.log('secret', SECRET, 'token', token);
 
       let user = jwt.verify(token, SECRET);
       // console.log('all good',user);
@@ -147,17 +147,25 @@ function LoginProvider(props) {
       setLoginState(true, token, user);
     }
     catch (e) {
-      console.log('User is not verified', e.message);
+      // console.log('User is not verified', e.message);
       setLoginState(false, null, {});
     }
   };
+
+ 
   const logout = () => {
     //  console.log('loggedOut');
 
     setLoginState(false, null, {});
-
-
+    deleteCookie('auth');
+    
+   
   };
+
+  function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+  
   //   const signUp = async( username,email, password,relationship,city, role)=>{
 
   //     console.log('RESPONSE===',typeof(username),username,typeof(password),password)
@@ -177,7 +185,7 @@ function LoginProvider(props) {
   //         }
   //   }
   const signUp = async function (username, email, password) {
-    console.log('here**********');
+    // console.log('here**********');
 
     try {
       let url = `https://vybin.herokuapp.com/api/v1/auth/register`;
@@ -212,7 +220,7 @@ function LoginProvider(props) {
     setInvalid(isValid)
   };
   const state = { login, logout, signUp, loggedIn, user, isValid, userData };
-  console.log(state, "مشان الله عليت قلبي");
+  // console.log(state, "مشان الله عليت قلبي");
   return (
     <LoginContext.Provider value={state}>
       {props.children}

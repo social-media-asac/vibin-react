@@ -38,7 +38,7 @@ export default function TopBar({username}) {
         let url =`https://vybin.herokuapp.com/api/v1/users?username=${username}`;
         let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
         
-        console.log(res.data,'res.data');
+        // console.log(res.data,'res.data');
          setUser(res.data);
         
     
@@ -53,7 +53,7 @@ export default function TopBar({username}) {
       const fetchPosts = async()=>{
          let url =`https://vybin.herokuapp.com/api/v1/users?username=${value}`;
          let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
-         console.log(res.data,'res.data');
+        //  console.log(res.data,'res.data');
          //  setUser(res.data);
          document.getElementById('search').value='';
          document.getElementById('search').placeholder='';
@@ -91,7 +91,7 @@ export default function TopBar({username}) {
   className="searchInput"
   id="search"
   />
-{ console.log(username1,'!!!!!@@@@@@@#####$$$$$%%%%%^^^^^')     }  
+{/* { console.log(username1,'!!!!!@@@@@@@#####$$$$$%%%%%^^^^^')     }   */}
 <button type="submit" className="search" id="btn" onClick={handlerChange} > <Search className="searchIcon"  /> </button>
   {/* </form>  */}
             {username1? <Link  to={"/profile/"+username1.username} style={{textDecoration:"none"}}>

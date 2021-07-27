@@ -9,7 +9,7 @@ import Feed from "../../component/feed/feed";
 
 const Home = (props) =>{
   const contextType  = useContext(LoginContext);
-  console.log(contextType,'contextType from home page ')
+  // console.log(contextType,'contextType from home page ')
     return (
         <>
           <TopBar username={contextType.user.username} />

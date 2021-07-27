@@ -17,7 +17,8 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('userinfo', username, email, password);
+    // console.log('userinfo', username, email, password);
+    
     let user = contextType.signUp(username, email, password);
 
     history.push(`/profile/${user.username}`)
