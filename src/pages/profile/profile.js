@@ -12,8 +12,8 @@ import  {LoginContext}  from '../../context/authContext';
 const token = cookie.load('auth');
 export default function Profile() {
   const contextType  = useContext(LoginContext);
-  // let user = contextType.userData.user;
-  // console.log('user@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2', user);
+  let user1 = contextType.userData.user;
+  console.log('user@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2', user1);
   const [user, setUser] = useState([])
  console.log('contextType in profile page ',contextType)
   const username = useParams().username;

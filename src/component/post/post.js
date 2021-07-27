@@ -94,12 +94,12 @@ import "./post.css";
 import { MoreVert } from "@material-ui/icons";
 // import { Users } from "../../dummyData";
 import axios from 'axios';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import cookie from 'react-cookies';
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 import { If, Then, Else } from 'react-if';
-// import  {LoginContext}  from '../../context/authContext';
+ import  {LoginContext}  from '../../context/authContext';
 
 import Share from '../share/share';
 const token = cookie.load('auth');
@@ -107,15 +107,16 @@ const token = cookie.load('auth');
 let IconLike ='https://image.similarpng.com/very-thumbnail/2020/06/Icon-like-button-transparent-PNG.png'
 let IconLove ='https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg'
 export default function Post({ post }) {
-  // const contextType = useContext(LoginContext);
-  // let userInfo = contextType.user;
-  // console.log('userInfo', userInfo);
+  const contextType = useContext(LoginContext);
+   let userInfo = contextType.user;
+   console.log('userInfo%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', userInfo);
   // let userId = contextType.user.userId;
   // console.log('contextType from post', contextType);
   const [like, setLike] = useState(post.likes.length)
   const [isLiked, setIsLiked] = useState(false)
   const [user, setUser] = useState({});
   const [boolean, setBoolean] = useState(false);
+  console.log(user,'()(()()()()()()()()()()(')
   useEffect(() => {
     let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
     const fetchUser = async () => {
@@ -127,8 +128,22 @@ export default function Post({ post }) {
     }
     fetchUser();
   }, [post.userId])
-  const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1)
+ 
+  // const { user: currentUser } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(userInfo.userId,'userInfo.userId@@@@@@@')
+    setIsLiked(post.likes.includes(userInfo.userId));
+  }, [userInfo.userId, post.likes]);
+  const likeHandler = async () => {
+    let url =`https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`
+    console.log(url,'|||||||||||||||||||||||||||||||||');
+
+    let res = await axios.put(url
+     , {"body":null} 
+       ,{ headers: {"Authorization" : `Bearer ${token}`}}
+       )
+       console.log(res,'eeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+       setLike(isLiked ? like - 1 : like + 1)
     setIsLiked(!isLiked)
   }
   

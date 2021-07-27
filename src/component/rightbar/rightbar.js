@@ -23,9 +23,13 @@ export default function Rightbar({ user }) {
 const token =cookie.load('auth');
   console.log('vvvvVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVvvvv',user);
   const [friends, setFriends] = useState([]);
-const [flag,setFlag] =useState(
-  true ? false : true
-);
+  const [flag,setFlag] =useState(
+    true ? false : true
+  );
+// const [boolean,setBoolean] =useState(
+//   false 
+// );
+// console.log(boolean,'boleean894saaaaaaaaaaaaaaaaaaaaa')
 console.log(flag,'flag8888888888888888888888888888888888888888')
   // const { user1, dispatch } = useContext(AuthContext);
   // console.log(user1,'user1')
@@ -58,7 +62,7 @@ console.log(flag,'flag8888888888888888888888888888888888888888')
       }
     }
     getFriends();
-  },[user])
+  },[user,token])
 
 
   const follow = async() => {
@@ -72,7 +76,8 @@ try {
     
       )
       console.log(res.data,'0000000000000000000000000000000000000000000000000')
-      setFlag(false);
+      setFlag(!flag);
+      // setBoolean(!boolean);
        dispatch({ type: "UNFOLLOW", payload: user._id });
 
         
@@ -92,6 +97,7 @@ try {
       ,{ headers: {"Authorization" : `Bearer ${token}`}}
       )
       setFlag(true);
+      // setBoolean(!boolean);
      dispatch({ type: "FOLLOW", payload: user._id });
    } catch (error) {
      console.log(error)
@@ -131,17 +137,17 @@ try {
            {
             userAccount !== currentUser && 
            (
-            <If condition={flag===true}>
-             <button onClick={follow} type="button"className="rightBarFollowButton"> 
-              Follow <Add />
            
-              </button> 
-             <Else> 
-             <button onClick={unFollow} type="button"className="rightBarFollowButton"> 
-              UnFollow <Remove />
-              </button> 
-             </Else>
-             </If>
+            <If condition={flag===true}>
+            <button onClick={follow} type="button"className="rightBarFollowButton"> 
+             Follow <Add />
+             </button> 
+            <Else> 
+            <button onClick={unFollow} type="button"className="rightBarFollowButton"> 
+             UnFollow <Remove />
+             </button> 
+            </Else>
+            </If>
            ) }
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">

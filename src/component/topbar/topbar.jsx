@@ -5,11 +5,12 @@ import  {LoginContext}  from '../../context/authContext';
 import { useState , useContext ,useEffect} from 'react';
 import axios from 'axios';
 import cookie from 'react-cookies';
-
+import SearchUser from '../search/search';
 export default function TopBar({username}) {
     const contextType = useContext(LoginContext);
     const [user,setUser] =useState({});
     const token = cookie.load('auth');
+    const [username1,setUsername] =useState('')
     useEffect(() => {
   
       const fetchPosts = async()=>{
@@ -20,11 +21,51 @@ export default function TopBar({username}) {
          setUser(res.data);
         
     
+
       } 
       fetchPosts();
     
-    },[])
+    },[token,username])
+ 
+const handlerSearch = () => {
+  console.log(document.getElementById('search'),"search")
+  // const fetchPosts = async()=>{
+  //   let url =`https://vybin.herokuapp.com/api/v1/users?username=${username}`;
+  //   let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
+    
+  //   console.log(res.data,'res.data');
+  //    setUser(res.data);
+    
 
+  // } 
+  // fetchPosts();
+}
+
+const handlerChange = (e) => {
+ e.preventDefault();
+ let value = document.getElementById('search').value
+//  let value = e.target.search.value;
+
+ const fetchPosts = async()=>{
+    let url =`https://vybin.herokuapp.com/api/v1/users?username=${value}`;
+    let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
+    
+    console.log(res.data,'res.data');
+    //  setUser(res.data);
+    document.getElementById('search').value='';
+    document.getElementById('search').placeholder='';
+    // e.target.search.value='';
+    // e.target.search.placeholder='';
+    // e.target.btn.value='';
+setUsername(res.data);
+
+  } 
+  fetchPosts();
+  
+  
+}
+
+  
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -32,11 +73,41 @@ export default function TopBar({username}) {
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-          <Search className="searchIcon" />
-          <input
-            placeholder="Search for friend, post or video"
-            className="searchInput"
-          />
+          {/* <Search className="searchIcon" /> */}
+          {/* <form onSubmit={handlerChange}> */}
+
+<input
+  placeholder="Search for friend, post or video"
+  className="searchInput"
+  id="search"
+ 
+  />
+{ console.log(username1,'!!!!!@@@@@@@#####$$$$$%%%%%^^^^^')     }  
+
+
+<button type="submit" className="search" id="btn" onClick={handlerChange} > <Search className="searchIcon"  /> </button>
+
+
+
+  {/* </form>  */}
+            {username1? <Link  to={"/profile/"+username1.username} style={{textDecoration:"none"}}>
+          <div  >
+            {cookie.save('data',username1)}
+           <span> <img className="searchImg" src={username1.profilePicture} alt="" /> </span> 
+          </div>
+        </Link> :null}
+        {username1? <Link  to={"/profile/"+username1.username} style={{textDecoration:"none"}}>
+          <div  >
+        
+            <span className="searchUser" style={{marginBottom:"30px"}}>{username1.username}</span>
+          </div>
+        </Link> :null}
+
+
+       
+  
+        
+            
         </div>
       </div>
       <div className="topbarRight">
