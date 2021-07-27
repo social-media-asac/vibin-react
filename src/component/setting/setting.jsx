@@ -122,10 +122,11 @@ function Setting() {
           <Form.Control name="password" type="password" placeholder="Change your password" />
         </Form.Group>
 
-        <Link to ={`/`}> <Button variant="primary" type="submit" >
+        {/* <Link to ={`/`}>  */}
+        <Button variant="primary" type="submit" >
           Submit
         </Button>
-       </Link>
+       {/* </Link> */}
       </Form>
       
        <br></br>
