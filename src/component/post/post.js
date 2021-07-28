@@ -11,14 +11,15 @@ import Delete from '../delete/Delete';
 import Share from "../share/share";
 import { LoginContext } from "../../context/authContext";
 import { Button } from "react-bootstrap";
+import remove from '../../store/simplePost';
 const token = cookie.load("auth");
 let IconLike =
   "https://image.similarpng.com/very-thumbnail/2020/06/Icon-like-button-transparent-PNG.png";
 let IconLove =
   "https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg";
   
-export default function Post({ post }) {
-
+export default function Post(props) {
+ console.log(props,"props from post page");
   const contextType = useContext(LoginContext);
   let userInfo = contextType.user;
 
@@ -26,30 +27,30 @@ export default function Post({ post }) {
   // let userId = contextType.user.userId;
   // console.log('contextType from post', contextType);
 
-  const [like, setLike] = useState(post.likes.length);
+  // const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
 
   const [boolean, setBoolean] = useState(false);
-  const WAIT_TIME = 1000
-  useEffect(() => {
-    // const id = setInterval(() => {
-    let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
-    const fetchUser = async () => {
-      await axios
-        .get(url, { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => {
+  // const WAIT_TIME = 1000
+  // useEffect(() => {
+  //   // const id = setInterval(() => {
+  //   let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
+  //   const fetchUser = async () => {
+  //     await axios
+  //       .get(url, { headers: { Authorization: `Bearer ${token}` } })
+  //       .then((res) => {
 
-          // console.log(res.data);
+  //         // console.log(res.data);
 
-          setUser(res.data);
-        });
-    };
+  //         setUser(res.data);
+  //       });
+  //   };
 
-    fetchUser();
-    // }, WAIT_TIME);
-    // return () => clearInterval(id);
-  }, []);
+  //   fetchUser();
+  //   // }, WAIT_TIME);
+  //   // return () => clearInterval(id);
+  // }, []);
 
   // const likeHandler = () => {
   //   setLike(isLiked ? like - 1 : like + 1)
@@ -59,30 +60,30 @@ export default function Post({ post }) {
   // const [boolean, setBoolean] = useState(false);
 
   // const deleteHandler = async () => {
-  useEffect(() => {
+  // useEffect(() => {
 
     // console.log(userInfo.userId, "userInfo.userId@@@@@@@");
 
-    setIsLiked(post.likes.includes(userInfo.userId));
-  }, [userInfo.userId, post.likes]);
+  //   setIsLiked(post.likes.includes(userInfo.userId));
+  // }, [userInfo.userId, post.likes]);
 
-  const likeHandler = async () => {
+  // const likeHandler = async () => {
 
-    let url = `https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`;
+  //   let url = `https://vybin.herokuapp.com/api/v1/posts/like/${post._id}`;
 
-    // console.log(url, "|||||||||||||||||||||||||||||||||");
+  //   // console.log(url, "|||||||||||||||||||||||||||||||||");
 
-    let res = await axios.put(
-      url,
-      { body: null },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+  //   let res = await axios.put(
+  //     url,
+  //     { body: null },
+  //     { headers: { Authorization: `Bearer ${token}` } }
+  //   );
 
-    // console.log(res, "eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+  //   // console.log(res, "eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
-  };
+  //   setLike(isLiked ? like - 1 : like + 1);
+  //   setIsLiked(!isLiked);
+  // };
 
   // const deleteHandler = async () => {
   //   setBoolean(true);
@@ -105,7 +106,7 @@ export default function Post({ post }) {
           <div className="postWrapper">
             <div className="postTop">
               <div className="postTopLeft">
-                <Link to={`/user/${post.userId}`}>
+                {/* <Link to={`/user/${post.userId}`}>
                   <img
                     className="postProfileImg"
                     src={
@@ -114,47 +115,48 @@ export default function Post({ post }) {
                     }
                     alt=""
                   />
-                </Link>
+                </Link> */}
                 <span className="postUsername">{user.username}</span>
-                <span className="postDate">{format(post.createdAt)}</span>
+                {/* <span className="postDate">{format(post.createdAt)}</span>
               </div>
               <div className="postTopRight">
                 <Update Provider={post} />
-                <Delete Provider={post} />
+                <Delete Provider={post} /> */}
+                <Button onClick={ ()=>{remove(props.post)}} > X </Button>
                 {/* <Button onClick={deleteHandler}>Delete</Button> */}
               </div>
               {/* {boolean ? <Link to={`/`}>ssssssssssssssssss</Link> : true} */}
             </div>
             <div className="postCenter">
-              <span className="postText">{post?.desc}</span>
+              {/* <span className="postText">{post?.desc}</span> } */}
 
-              {/* {console.log(post,'ppppppppppp')} */}
+              {/* {console.log(post,'ppppppppppp')*/}
 
-              <img className="postImg" src={post.img} alt="" />
+              {/* <img className="postImg" src={post.img} alt="" /> */}
             </div>
             <div className="postBottom">
               <div className="postBottomLeft">
                 <img
                   className="likeIcon"
                   src={IconLike}
-                  onClick={likeHandler}
+                  // onClick={likeHandler}
                   alt=""
                 />
                 <img
                   className="likeIcon"
                   src={IconLove}
-                  onClick={likeHandler}
+                  // onClick={likeHandler}
                   alt=""
                 />
-                <span className="postLikeCounter">{like} people like it</span>
+                {/* <span className="postLikeCounter">{like} people like it</span> */}
               </div>
               <div className="postBottomRight">
-                <span className="postCommentText">{post.comment} comments</span>
+                {/* <span className="postCommentText">{post.comment} comments</span> */}
               </div>
             </div>
           </div>
         </div>
-      </Else>
+       </Else>  
     </If>
   );
 }

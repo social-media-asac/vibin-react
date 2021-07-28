@@ -10,18 +10,19 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+ 
   // const [relationship, setRelationship] = useState('');
   // const [city, setCity] = useState('');
   // const [role, setRole] = useState('user');
   const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     // console.log('userinfo', username, email, password);
     
     let user = contextType.signUp(username, email, password);
 
-    history.push(`/profile/${user.username}`)
+    history.push(`/`)
   };
   return (
         <>

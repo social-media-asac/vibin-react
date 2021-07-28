@@ -28,22 +28,22 @@ export default function Post({ post }) {
 
   const [boolean, setBoolean] = useState(false);
   //  const WAIT_TIME = 5000
-  useEffect(() => {
-    // const id = setInterval(() => {
-    let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
-    const fetchUser = async () => {
-      await axios
-        .get(url, { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => {
-          // console.log(res.data);
-          setUser(res.data);
-        });
-    };
+  // useEffect(() => {
+  //   // const id = setInterval(() => {
+  //   let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
+  //   const fetchUser = async () => {
+  //     await axios
+  //       .get(url, { headers: { Authorization: `Bearer ${token}` } })
+  //       .then((res) => {
+  //         // console.log(res.data);
+  //         setUser(res.data);
+  //       });
+  //   };
     
-    fetchUser();
-  // }, WAIT_TIME);
-  // return () => clearInterval(id);
-  }, [post]);
+  //   fetchUser();
+  // // }, WAIT_TIME);
+  // // return () => clearInterval(id);
+  // }, [post]);
 
   // const likeHandler = () => {
   //   setLike(isLiked ? like - 1 : like + 1)

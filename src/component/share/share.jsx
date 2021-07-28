@@ -20,22 +20,22 @@ export default function Share() {
   const [file, setFile]= useState(null)
   // console.log('contextType from post', contextType);
   // const WAIT_TIME = 1000
-  useEffect(() => {
-    // const id = setInterval(() => {
-    let url = `https://vybin.herokuapp.com/api/v1/users?userId=${userId}`;
-    const fetchUser = async () => {
-      await axios
-        .get(url, { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => {
-          // console.log(res.data);
-          setUser(res.data);
-        });
-    };
+  // useEffect(() => {
+  //   // const id = setInterval(() => {
+  //   let url = `https://vybin.herokuapp.com/api/v1/users?userId=${userId}`;
+  //   const fetchUser = async () => {
+  //     await axios
+  //       .get(url, { headers: { Authorization: `Bearer ${token}` } })
+  //       .then((res) => {
+  //         // console.log(res.data);
+  //         setUser(res.data);
+  //       });
+  //   };
     
-    fetchUser();
-  // }, WAIT_TIME);
-  // return () => clearInterval(id);
-  }, [userId]);
+  //   fetchUser();
+  // // }, WAIT_TIME);
+  // // return () => clearInterval(id);
+  // }, [userId]);
 
   const submitHandler = async (e)=>{
     e.preventDefault();

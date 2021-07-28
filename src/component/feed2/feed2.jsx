@@ -7,10 +7,13 @@ import axios from 'axios';
 import cookie from 'react-cookies';
 import { LoginContext } from '../../context/authContext';
 import AuthReducer from '../../context/authReducer';
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+import {remove} from '../../store/simplePost';
 
 
-
-export default function Feed({ username }) {
+ function Feed( props) {
+  console.log(props,'propsItem///////////////////')
   const contextType = useContext(LoginContext);
   const contextFollow = useContext(AuthReducer);
 
@@ -29,8 +32,8 @@ export default function Feed({ username }) {
   useEffect(() => {
 
     const fetchPosts = async () => {
-      let url = `https://vybin.herokuapp.com/api/v1/posts/timeline/${user.userId}`;
-      let url2 = `https://vybin.herokuapp.com/api/v1/posts/profile/${username}`;
+      // let url = `https://vybin.herokuapp.com/api/v1/posts/timeline/${user.userId}`;
+      let url2 = `https://vybin.herokuapp.com/api/v1/posts/profile/${props.username}`;
 
       let res =
         //  username ?
@@ -49,15 +52,27 @@ export default function Feed({ username }) {
     }
     fetchPosts();
 
-  }, [username])
+  }, [props.username,token])
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {user.username === username && <Share />}
+        {/* {user.username === username && <Share />} */}
         {posts.map((p) => (
+          <>
           <Post key={p.id} post={p} />
+          {/* <Button onClick={ ()=>{props.remove(p)}} > X </Button> */}
+          </>
         ))}
       </div>
     </div>
   );
 }
+
+const mapStateToProps = state =>({
+  post :state.post ? state.post : null,
+ 
+})
+
+const mapDispatchToProps = { remove };
+
+export default connect(mapStateToProps,mapDispatchToProps)(Feed)

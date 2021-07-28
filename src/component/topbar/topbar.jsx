@@ -9,7 +9,10 @@ import { useState , useContext ,useEffect} from 'react';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import Setting from '../setting/setting'
-export default function TopBar({username}) {
+import { connect } from "react-redux";
+ function TopBar(props) {
+  console.log(props,
+    'props from topbar')
     const contextType = useContext(LoginContext);
     const[extra,setExtra]=useState({});
     const [user,setUser] =useState({});
@@ -17,38 +20,38 @@ export default function TopBar({username}) {
     const token = cookie.load('auth');
     let userId = contextType.user.userId;
     const WAIT_TIME = 5000
-    useEffect(() => {
-      const id = setInterval(() => {
-      let url = `https://vybin.herokuapp.com/api/v1/users?userId=${userId}`;
-      const fetchUser = async () => {
-        await axios
-          .get(url, { headers: { Authorization: `Bearer ${token}` } })
-          .then((res) => {
-            // console.log(res.data);
-            setExtra(res.data);
-          });
-      };
+    // useEffect(() => {
+    //   const id = setInterval(() => {
+    //   let url = `https://vybin.herokuapp.com/api/v1/users?userId=${userId}`;
+    //   const fetchUser = async () => {
+    //     await axios
+    //       .get(url, { headers: { Authorization: `Bearer ${token}` } })
+    //       .then((res) => {
+    //         // console.log(res.data);
+    //         setExtra(res.data);
+    //       });
+    //   };
       
-      fetchUser();
-    }, WAIT_TIME);
-    return () => clearInterval(id);
-    }, [extra]);
+    //   fetchUser();
+    // }, WAIT_TIME);
+    // return () => clearInterval(id);
+    // }, [extra]);
 
 
-    useEffect(() => {
+    // useEffect(() => {
   
-      const fetchPosts = async()=>{
-        let url =`https://vybin.herokuapp.com/api/v1/users?username=${username}`;
-        let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
+    //   const fetchPosts = async()=>{
+    //     let url =`https://vybin.herokuapp.com/api/v1/users?username=${props.username}`;
+    //     let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
         
-        // console.log(res.data,'res.data');
-         setUser(res.data);
+    //     // console.log(res.data,'res.data');
+    //      setUser(res.data);
         
     
-      } 
-      fetchPosts();
+    //   } 
+    //   fetchPosts();
     
-    },[username,token])
+    // },[props.username,token])
     const handlerChange = (e) => {
       e.preventDefault();
       let value = document.getElementById('search').value
@@ -146,3 +149,12 @@ export default function TopBar({username}) {
     </div>
   );
 }
+
+const mapStateToProps = state =>({
+  post :state.post ? state.post : null,
+ 
+})
+
+// const mapDispatchToProps = { remove };
+
+export default connect(mapStateToProps)(TopBar)

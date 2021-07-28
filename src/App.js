@@ -3,11 +3,14 @@ import './App.scss';
 import Main from '../src/component/main/main'
 import LoginProvider from './context/authContext';
 import {AuthContextProvider} from './context/authContext2';
+
 function App() {
   return (
 
 <LoginProvider>
   <AuthContextProvider> 
+    
+    
 
      <Main/>
   </AuthContextProvider>

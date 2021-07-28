@@ -39,20 +39,20 @@ export default function Profile() {
 //   console.log(data, 'get all request');
 //   return data;
 // }
-useEffect(() => {
+// useEffect(() => {
   
-  const fetchPosts = async()=>{
-    let url =`https://vybin.herokuapp.com/api/v1/users?username=${username}`;
-    let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
+//   const fetchPosts = async()=>{
+//     let url =`https://vybin.herokuapp.com/api/v1/users?username=${username}`;
+//     let res =  await axios.get(url , { headers: {"Authorization" : `Bearer ${token}`} })
     
     
-     setUser(res.data);
+//      setUser(res.data);
     
 
-  } 
-  fetchPosts();
+//   } 
+//   fetchPosts();
 
-},[username])
+// },[username])
   return (
     <>
       <TopBar />
