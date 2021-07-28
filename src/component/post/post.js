@@ -17,7 +17,7 @@ let IconLike =
 let IconLove =
   "https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg";
   
-export default function Post({ post }) {
+export default function Post({ post ,onDelete , onUpdate ,sharePosts }) {
 
   const contextType = useContext(LoginContext);
   let userInfo = contextType.user;
@@ -97,7 +97,7 @@ export default function Post({ post }) {
   return (
     <If>
       <Then>
-        <Share />
+        <Share sharePosts={sharePosts} />
       </Then>
 
       <Else>
@@ -119,8 +119,8 @@ export default function Post({ post }) {
                 <span className="postDate">{format(post.createdAt)}</span>
               </div>
               <div className="postTopRight">
-                <Update Provider={post} />
-                <Delete Provider={post} />
+                <Update onUpdate={onUpdate} Provider={post} />
+                <Delete onDelete={onDelete} Provider={post} />
                 {/* <Button onClick={deleteHandler}>Delete</Button> */}
               </div>
               {/* {boolean ? <Link to={`/`}>ssssssssssssssssss</Link> : true} */}

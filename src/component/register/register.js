@@ -19,9 +19,9 @@ const Register = () => {
 
     // console.log('userinfo', username, email, password);
     
-    let user = contextType.signUp(username, email, password);
+    // let user = contextType.signUp(username, email, password);
 
-    history.push(`/profile/${user.username}`)
+    history.push(`/`)
   };
   return (
         <>
@@ -34,7 +34,7 @@ const Register = () => {
             </span>
           </div>
           <div className="loginRight">
-            <div className="loginBox">
+            <div className="loginBox1">
           
             <form onSubmit={handleSubmit}>
               

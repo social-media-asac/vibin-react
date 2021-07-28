@@ -26,9 +26,12 @@ const Update = (props) =>{
   const changeHandle = e =>{
     setUpdPost({...post,[e.target.name]:e.target.value})
   }
+  
   const updatePost = e =>{
     e.preventDefault();
     fetchUpdPost(post);
+    props.onUpdate(props.Provider._id,post.desc)
+    console.log('props from update', props.Provider._id ,post.desc);
 }
 
 
@@ -48,13 +51,13 @@ const fetchUpdPost = async (updPost) =>{
   })
         let result = await res.json();
         // console.log(result, 'update post result');
-        setRedirect('/');
+        // setRedirect('/');
         return result;
       }
         return (
             <>
             <When condition={redirect}><Redirect to={redirect}></Redirect></When>
-              <Button variant='primary' onClick={handleShow}>edit</Button>
+              <Button variant='primary' onClick={handleShow}>Edit</Button>
               <Modal
                 show={show}
                 onHide={handleClose}

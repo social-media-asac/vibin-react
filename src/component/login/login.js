@@ -64,9 +64,9 @@ const LogIn = () =>{
         </div>
         <div className="loginRight">
           <div className="loginBox">
-          <input onChange={handleChange} name='username' type="text" placeholder="UserName" className="loginInput" />
+          <input onChange={handleChange} name='username' type="text" placeholder="UserName" className="loginInput1" />
             {/* <input onChange={handleChange} name='email' type="email" placeholder="Email" className="loginInput" /> */}
-            <input onChange={handleChange} name='password' type="password" placeholder="Password" className="loginInput" />
+            <input onChange={handleChange} name='password' type="password" placeholder="Password" className="loginInput1" />
              {/* <input onChange={handleChange} name='role' type="text" placeholder="role" className="loginInput" />  */}
             
              

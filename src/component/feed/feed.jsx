@@ -20,7 +20,7 @@ export default function Feed({ username }) {
   // console.log('user from feed @@@@@@@@@@@@@@@@@@@@@2', user)
   // console.log('token from feed', token);
 
-  const [posts, setPosts] = useState([]);
+  const [posts2, setPosts2] = useState([]);
   // console.log('username', username)
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Feed({ username }) {
 
 
       // setPosts(res.data);
-      setPosts(
+      setPosts2(
         res.data.sort((p1, p2) => {
           return new Date(p2.createdAt) - new Date(p1.createdAt);
         })
@@ -47,12 +47,16 @@ export default function Feed({ username }) {
     fetchPosts();
 
   }, [username])
+  const sharePosts2 = (postObj) => {
+    setPosts2(prev => [postObj,...prev]);
+}
+
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {user.username === username && <Share />}
-        {posts.map((p) => (
-          <Post2 key={p.id} post={p} />
+        {user.username === username && <Share sharePosts2={sharePosts2} />}
+        {posts2.map((p) => (
+          <Post2 key={p.id} post={p} sharePosts2={sharePosts2} />
         ))}
       </div>
     </div>

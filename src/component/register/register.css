@@ -33,8 +33,9 @@
     font-size: 24px;
 }
 
-.loginBox {
-    /* height: 400px; */
+.loginBox1 {
+    margin-left: 30px;
+    height: 340px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -44,7 +45,7 @@
 }
 
 .loginInput {
-    width: 90%;
+    width: 100%;
     height: 50px;
     border-radius: 10px;
     border: 1px solid gray;

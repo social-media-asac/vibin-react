@@ -23,6 +23,7 @@ const username =contextType.user.username;
   const deletePost = e =>{
     e.preventDefault();
     deleteHandler();
+    props.onDelete(props.Provider._id)
 }
 console.log(props.Provider.userId);
     useEffect(() => {
@@ -49,6 +50,7 @@ const deleteHandler = async () => {
     let postId = props.Provider._id;
     let url = `https://vybin.herokuapp.com/api/v1/posts/${postId}`;
     await axios.delete(url, { headers: { Authorization: `Bearer ${token}` } });
+
     // window.location.reload();
   };
 
@@ -63,7 +65,7 @@ const deleteHandler = async () => {
         return (
             <>
             <When condition={redirect}><Redirect to={redirect}></Redirect></When>
-              <Button variant='primary' onClick={handleShow}>Delete</Button>
+              <Button variant='primary' style={{marginLeft:"10px" , backgroundColor:"red"}} onClick={handleShow}>X</Button>
               <Modal
                 show={show}
                 onHide={handleClose}
@@ -92,9 +94,9 @@ const deleteHandler = async () => {
               <Modal.Footer>
                 <Button variant='primary' onClick={deletePost}>
                     {console.log(username)}
-              <Link to={'/'}>
+              {/* <Link to={'/'}> */}
                     <Button onClick={handleClose}>YES</Button>
-                </Link>
+                {/* </Link> */}
                     </Button>
               </Modal.Footer>
                   

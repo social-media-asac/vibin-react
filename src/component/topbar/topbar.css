@@ -9,8 +9,8 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  background: #d6249f;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  background: #6c48a7;
+  /* #860e61background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); */
 }
 .topbarLeft {
   flex: 3;
@@ -81,6 +81,9 @@
 }
 button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
   color: aliceblue;
+  position: relative;
+    top: 0px;
+    left: 350px;
 }
 a {
   

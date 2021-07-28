@@ -16,7 +16,7 @@ let IconLike =
   "https://image.similarpng.com/very-thumbnail/2020/06/Icon-like-button-transparent-PNG.png";
 let IconLove =
   "https://icon-library.com/images/facebook-love-icon-png/facebook-love-icon-png-23.jpg";
-export default function Post({ post }) {
+export default function Post2({ post , sharePosts2 }) {
   const contextType = useContext(LoginContext);
   let userInfo = contextType.user;
   // console.log('userInfo', userInfo);
@@ -27,7 +27,7 @@ export default function Post({ post }) {
   const [user, setUser] = useState({});
 
   const [boolean, setBoolean] = useState(false);
-  //  const WAIT_TIME = 5000
+   const WAIT_TIME = 5000
   useEffect(() => {
     // const id = setInterval(() => {
     let url = `https://vybin.herokuapp.com/api/v1/users?userId=${post.userId}`;
@@ -79,11 +79,13 @@ export default function Post({ post }) {
     // window.location.reload();
   };
   // console.log(post, "POST POST");
+  console.log('sharePosts2 from post 2',sharePosts2);
 
   return (
     <If>
       <Then>
-        <Share />
+        <Share sharePosts2={sharePosts2}  />
+       
       </Then>
 
       <Else>
