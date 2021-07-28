@@ -50,12 +50,30 @@ export default function Feed({ username }) {
     fetchPosts();
 
   }, [username])
+  const onDelete = (id)=>{
+setPosts(prev=> prev.filter(post=> post._id !== id))
+
+  }
+  const onUpdate =(id , desc)=>{ setPosts(prev=>{
+   return  prev.map(item =>{
+      if( item._id === id){
+       return {...item , desc};
+     } 
+     return item;
+    })
+
+  })}
+  const sharePosts = (postObj) => {
+    setPosts(prev => [postObj,...prev]);
+}
+ 
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {user.username === username && <Share />}
+        {console.log('post from feed2',posts)}
+        {user.username === username && <Share  sharePosts={sharePosts}  />}
         {posts.map((p) => (
-          <Post key={p.id} post={p} />
+          <Post onDelete={onDelete} key={p.id} post={p} onUpdate={onUpdate}  sharePosts={sharePosts} />
         ))}
       </div>
     </div>

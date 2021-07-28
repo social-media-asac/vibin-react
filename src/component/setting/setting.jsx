@@ -73,7 +73,7 @@ function Setting() {
     
     let url = `https://vybin.herokuapp.com/api/v1/users/${userId}`
     await axios.delete(url, { headers: { "Authorization": `Bearer ${token}` } })
-    setRedirect('/');
+    // setRedirect('/');
   }
   return (
 
@@ -132,11 +132,15 @@ function Setting() {
        <br></br>
        <Form>
        <Form.Group>
-    <Link to ={`/`}> <Button className="deactivateAcoount" > Cancle</Button></Link></Form.Group></Form> 
+    <Link to ={`/`}> 
+    <button type="button" className="deactivateAcoount" class="btn btn-link">Cancle</button>
+    </Link>
+    </Form.Group>
+    </Form> 
       <Form>
        <Form.Group>
-<When condition={redirect}><Redirect to={redirect}></Redirect></When>
-     <Button  onClick={deleteAccount}> Deactivate my account</Button></Form.Group></Form>
+{/* <When condition={redirect}><Redirect to={redirect}></Redirect></When> */}
+<button onClick={deleteAccount} type="button" class="btn btn-danger">Deactivate my account</button></Form.Group></Form>
      
     </div>
     </>

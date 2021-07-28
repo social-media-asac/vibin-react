@@ -8,7 +8,7 @@ import axios from "axios";
 import cookie from 'react-cookies'
 
 const token = cookie.load('auth');
-export default function Share() {
+export default function Share(props) {
   const [user, setUser] = useState({});
   const contextType = useContext(LoginContext);
   const desc = useRef();
@@ -40,29 +40,52 @@ export default function Share() {
   const submitHandler = async (e)=>{
     e.preventDefault();
     const newPost = {
+      
       userId:userId,
       desc: desc.current.value
     }
     // if(file){
-    //   const data = new FormData();
-    //   const fileName = Date.now() + file.name;
-    //   data.append('file',file);
-    //   data.append('name', fileName);
-    //   newPost.img = fileName;
-    //   try {
-    //     await axios.post('https://vybin.herokuapp.com/api/v1/upload',data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-    try {
-      await axios.post('https://vybin.herokuapp.com/api/v1/posts',newPost,  { headers: {"Authorization" : `Bearer ${token}`} })
-       window.location.reload()
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  return (
+      //   const data = new FormData();
+      //   const fileName = Date.now() + file.name;
+      //   data.append('file',file);
+      //   data.append('name', fileName);
+      //   newPost.img = fileName;
+      //   try {
+        //     await axios.post('https://vybin.herokuapp.com/api/v1/upload',data);
+        //   } catch (error) {
+          //     console.log(error);
+          //   }
+          // }
+          try {
+            let res =  await axios.post('https://vybin.herokuapp.com/api/v1/posts',newPost,  { headers: {"Authorization" : `Bearer ${token}`} })
+            //  window.location.reload()
+            console.log('res.data from share ', res.data);
+            // props.sharePosts2(res.data);
+            props.sharePosts(res.data);
+            // console.log('props.sharePosts2(res.data)',props.sharePosts2(res.data));
+            
+          } catch (error) {
+            console.log(error);
+          }
+          try {
+            let res =  await axios.post('https://vybin.herokuapp.com/api/v1/posts',newPost,  { headers: {"Authorization" : `Bearer ${token}`} })
+            //  window.location.reload()
+            console.log('res.data from share ', res.data);
+            props.sharePosts2(res.data);
+            // props.sharePosts(res.data);
+            // console.log('props.sharePosts2(res.data)',props.sharePosts2(res.data));
+            
+          } catch (error) {
+            console.log(error);
+          }
+          // e.target.reset();
+          document.getElementById('tasnim').value='';
+          console.log('e.target',e.target);
+        }
+        function sharesPosts () {
+
+        }
+        return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
@@ -71,6 +94,7 @@ export default function Share() {
             placeholder={`What's in your mind ${userInfo.username}?`}
             className="shareInput"
             ref={desc}
+            id="tasnim"
           />
         </div>
         <hr className="shareHr" />
@@ -102,7 +126,7 @@ export default function Share() {
               <span className="shareOptionText">Feelings</span>
             </div>
           </div>
-          <button className="shareButton" type="submit">Share</button>
+          <button className="shareButton" type="submit" >Share</button>
         </form>
       </div>
     </div>
