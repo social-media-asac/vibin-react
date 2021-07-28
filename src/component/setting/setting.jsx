@@ -111,7 +111,7 @@ function Setting() {
           <Form.Label>Relationship : </Form.Label>
           <Form.Control name="relationship" type="number" placeholder="Where are you from?" />
         </Form.Group> */}
-
+         <Form.Label>Relashionship </Form.Label>
         <select class="form-select" aria-label="Default select example" name="relationship">
           <option id="relationship" name="relationship" value="1"> single </option>
           <option id="relationship" name="relationship" value="2"> Married </option>
