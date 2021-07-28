@@ -79,6 +79,7 @@ function Setting() {
 
     <>
     <TopBar/>
+    <h2>Account Setting </h2>
     <div id="formSetting">
       {/* <When condition={redirect}><Redirect to={redirect}></Redirect></When> */}
       <Form  onSubmit={updateHandler}>
